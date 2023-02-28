@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav class="navbar background">
+        <ul class="nav-list">
+            <li><a href='/'>Home</a></li>
+            <li><a href='/register'>Create An Account</a></li>
+            <li><a href='/login'>Login</a></li>
+            <li><a href='/logout'>Logout</a></li>
+            <li><a href='/user/{{ g.user.id }}'>Profile</a></li>
+        </ul>
+    </nav>
+    <h1>Cocktail Generator</h1>
+    {% block content %}
+        <a href="/generate-random">Get a random cocktail!</a>
+        <a href="/search">Search for Cocktail By Name</a>
+        <a href="/searchbyliquor">Search By Liquor</a>
+        <h3>Select From Popular Cocktails</h3>
+        <ul>
+            {% for drink in  returnDrink %}
+                <li><a href='/{{ drink.strDrink }}'>{{drink.strDrink}}</a></li>
+            {% endfor %}
+        </ul>
+        
+        
+    {% endblock %}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/static/script.js"></script>
+</body>
+</html>

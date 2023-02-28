@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% block content %}
+    {% for drink in returnDrink %}
+    <h1 name="drinkname">{{drink.strDrink}}</h1>
+    <p>{{drink.strAlcoholic}}</p>
+    <p>{{drink.strGlass}}</p>
+    <ul>
+        <li>{{drink.strIngredient1}} x {{drink.strMeasure1}}</li>
+        <li>{{drink.strIngredient2}} x {{drink.strMeasure2}}</li>
+        <li>{{drink.strIngredient3}} x {{drink.strMeasure3}}</li>
+        <li>{{drink.strIngredient4}} x {{drink.strMeasure4}}</li>
+        <li>{{drink.strIngredient5}} x {{drink.strMeasure5}}</li>
+        <li>{{drink.strIngredient6}} x {{drink.strMeasure6}}</li>
+        <li>{{drink.strIngredient7}} x {{drink.strMeasure7}}</li>
+        <li>{{drink.strIngredient8}} x {{drink.strMeasure8}}</li>
+        <li>{{drink.strIngredient9}} x {{drink.strMeasure9}}</li>
+    </ul>
+    <p>{{drink.strInstructions}}</p>
+    <form method="POST" action="/{{drink.strDrink}}/add">
+        <button>FAVORITE THIS DRINK</button>
+    </form>
+    {% endfor %}
+        
+    
+{% endblock %}

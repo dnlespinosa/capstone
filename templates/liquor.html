@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+{% block content %}
+    <h1>Search Results</h1>
+    <ul>
+        {% for drink in returnDrink %}
+            <li><a href='/{{drink.strDrink}}'>{{drink.strDrink}}</a></li>
+        {% endfor %}
+    </ul>
+        
+    
+{% endblock %}
