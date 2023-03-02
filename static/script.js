@@ -23,8 +23,8 @@
 
 const options = {
   method: 'GET',
-  url: 'https://the-cocktail-db.p.rapidapi.com/filter.php',
-  params: {i: 'Gin'},
+  url: 'https://the-cocktail-db.p.rapidapi.com/search.php',
+  params: {s: 'Mojito'},
   headers: {
     'X-RapidAPI-Key': '1f4b3e251bmshb1df2538c036ddfp1c6675jsn19129a6f9614',
     'X-RapidAPI-Host': 'the-cocktail-db.p.rapidapi.com'
@@ -32,7 +32,7 @@ const options = {
 };
 
 axios.request(options).then(function (response) {
-	console.log(response.data);
+	console.log(response.data.drinks[0]);
 }).catch(function (error) {
 	console.error(error);
 });

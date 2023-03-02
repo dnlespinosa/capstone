@@ -138,10 +138,26 @@ def popular_drink(drinkname):
     }
     response = requests.request("GET", url, headers=headers, params=querystring)
     data = response.json()
-    returnDrink = data['drinks']
-    
+    dataDrink = [data['drinks'][0]]
 
-    return render_template('popularDrink.html', returnDrink=returnDrink)
+    returnDrink={}
+    for drink in dataDrink:
+        for k in drink:
+            if drink[k] != None:
+                returnDrink[k] = drink[k]
+    ingredient = []
+    for k in returnDrink:
+        if 'strIngredient' in k:
+            ingredient.append(returnDrink[k])
+    measure = []
+    for k in returnDrink:
+        if 'strMeasure' in k:
+            measure.append(returnDrink[k])
+    result = zip(ingredient, measure)
+    result_list = list(result)
+    
+    
+    return render_template('popularDrink.html', returnDrink=[returnDrink], result_list=result_list)
 
 @app.route('/search/<liquor>')
 def liquor_search(liquor):
@@ -184,7 +200,24 @@ def genRandom():
         }
     response = requests.get(url, headers=headers)
     data = response.json()
-    returnDrink = data['drinks']
-    return render_template('randomCocktail.html', returnDrink=returnDrink)
+    dataDrink = data['drinks']
+    returnDrink={}
+    for drink in dataDrink:
+        for k in drink:
+            if drink[k] != None:
+                returnDrink[k] = drink[k]
+    
+    ingredient = []
+    for k in returnDrink:
+        if 'strIngredient' in k:
+            ingredient.append(returnDrink[k])
+    measure = []
+    for k in returnDrink:
+        if 'strMeasure' in k:
+            measure.append(returnDrink[k])
+    result = zip(ingredient, measure)
+    result_list = list(result)
+    
+    return render_template('randomCocktail.html', returnDrink=[returnDrink], result_list=result_list)
 
 
