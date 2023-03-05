@@ -26,4 +26,9 @@ class EditProfileForm(FlaskForm):
 class SearchDrinkForm(FlaskForm):
     """Searching for cocktail"""
 
-    drinkname = StringField('drinkname', validators=[DataRequired()])
+    drinkname = StringField('Drink Name', validators=[DataRequired()])
+
+class SearchLiquorForm(FlaskForm):
+    """Searching for cocktail by liquor"""
+
+    drinkname = StringField('Liquor Name', validators=[DataRequired()])

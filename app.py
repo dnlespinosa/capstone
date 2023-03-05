@@ -2,7 +2,7 @@ import requests
 
 from flask import Flask, render_template, request, redirect, session, g, flash
 from sqlalchemy.exc import IntegrityError
-from forms import UserAddForm, LoginForm, SearchDrinkForm
+from forms import UserAddForm, LoginForm, SearchDrinkForm, SearchLiquorForm
 from models import db, connect_db, User, FavoriteCocktail
 
 app = Flask(__name__)
@@ -102,7 +102,16 @@ def home_page():
     data = response.json()
     returnDrink = data['drinks']
 
-    return render_template('index.html', returnDrink=returnDrink)
+    url2 = "https://the-cocktail-db.p.rapidapi.com/random.php"
+    headers2 = {
+        "X-RapidAPI-Key": "1f4b3e251bmshb1df2538c036ddfp1c6675jsn19129a6f9614",
+        "X-RapidAPI-Host": "the-cocktail-db.p.rapidapi.com"
+        }
+    response2 = requests.get(url2, headers=headers2)
+    data2 = response2.json()
+    dataDrink = data2['drinks']
+
+    return render_template('index.html', returnDrink=returnDrink, dataDrink=dataDrink)
 
 @app.route('/search', methods=['GET', 'POST'])
 def search_drink():
@@ -118,7 +127,7 @@ def search_drink():
     
 @app.route('/searchbyliquor', methods=['GET', 'POST'])
 def search_by_liquor():
-    form = SearchDrinkForm()
+    form = SearchLiquorForm()
 
     if form.validate_on_submit():
         liquor = form.drinkname.data
