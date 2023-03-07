@@ -1,19 +1,22 @@
 {% extends 'index.html' %}
 {% block content %}
-    <h1>Generate Random Cocktail</h1>
         {% for drink in returnDrink %}
-            <h2>{{drink.strDrink}}</h2>
-            <p>{{drink.strAlcoholic}}</p>
-            <p>{{drink.strGlass}}</p>
-            <img src="{{drink.strDrinkThumb}}">
-            <ul>
-                {% for item in result_list %}
-                    <li>{{item[0]}} x {{item[1]}}</li>
-                {% endfor %}
-            </ul>
-            <p>{{drink.strInstructions}}</p>
-            <form method="POST" action="/{{drink.strDrink}}/add">
-                <button>FAVORITE THIS DRINK</button>
-            </form>
+            <div class="drink-header">
+                <h2>{{drink.strDrink}}</h2>
+            </div>
+            <div class="navbar-top">
+                <p>{{drink.strAlcoholic}}</p>
+                <p>{{drink.strGlass}}</p>
+                <img src="{{drink.strDrinkThumb}}">
+                <ul>
+                    {% for item in result_list %}
+                        <li>{{item[0]}} x {{item[1]}}</li>
+                    {% endfor %}
+                </ul>
+                <p>{{drink.strInstructions}}</p>
+                <form method="POST" action="/{{drink.strDrink}}/add">
+                    <button>FAVORITE THIS DRINK</button>
+                </form>
+            </div>
         {% endfor %}
 {% endblock %}
